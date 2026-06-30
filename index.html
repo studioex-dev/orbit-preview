@@ -169,16 +169,24 @@
          site header - persistent, translucent over dark hero
          ============================================================ */
       .site-header {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        z-index: 10;
+        z-index: 50;
         display: flex;
         justify-content: space-between;
         align-items: baseline;
         padding: 1.75rem var(--gutter);
         color: var(--cream);
+        transition: padding 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
+      }
+      .site-header.scrolled {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background: rgba(3, 7, 15, 0.82);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(201, 225, 236, 0.08);
       }
       .wordmark {
         font-family: var(--ff-display);
@@ -2681,6 +2689,39 @@
       .chapter.m-stardust { --motif: #ecc15f; }  /* 04 gold */
       .chapter.m-crimson { --motif: #e0689e; }   /* 05 magenta */
 
+      /* accessibility: skip link, focus rings, anchored-section offset */
+      .skip-link {
+        position: fixed;
+        top: 0; left: 0;
+        z-index: 100;
+        background: var(--accent-coral);
+        color: #fff;
+        padding: 0.6rem 1rem;
+        border-radius: 0 0 0.4rem 0;
+        font-family: var(--ff-mono);
+        font-size: 0.78rem;
+        text-decoration: none;
+        transform: translateY(-120%);
+        transition: transform 0.2s ease;
+      }
+      .skip-link:focus { transform: translateY(0); }
+      .section { scroll-margin-top: 5rem; }
+      a:focus-visible,
+      button:focus-visible,
+      summary:focus-visible {
+        outline: 2px solid var(--accent-ice);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+      #px-1:focus-visible ~ .ex-rail label[for="px-1"],
+      #px-2:focus-visible ~ .ex-rail label[for="px-2"],
+      #px-3:focus-visible ~ .ex-rail label[for="px-3"],
+      #px-4:focus-visible ~ .ex-rail label[for="px-4"],
+      #px-5:focus-visible ~ .ex-rail label[for="px-5"] {
+        outline: 2px solid var(--motif);
+        outline-offset: 2px;
+      }
+
       /* ============================================================
          reduced motion
          ============================================================ */
@@ -2707,6 +2748,7 @@
     </style>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wordmark">Orbit</div>
       <nav>
@@ -2714,6 +2756,8 @@
         <a href="#contact">Get in touch</a>
       </nav>
     </header>
+
+    <main id="main">
 
     <!-- ========================================================
          HERO
@@ -2777,7 +2821,7 @@
          ======================================================== -->
     <section class="section what" id="what">
       <div class="section-body">
-        <p class="ex-eyebrow">What it is</p>
+        <h2 class="ex-eyebrow">What it is</h2>
         <p class="lede whatlede">
           Orbit turns networking into a bespoke experience that<br class="lede-br" />
           increases <strong class="hl">connection rates</strong>, boosts
@@ -3165,6 +3209,8 @@
     <!-- ========================================================
          FOOTER
          ======================================================== -->
+    </main>
+
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="credits">
@@ -3713,6 +3759,15 @@
           }, { passive: true });
           upd();
         }
+      })();
+    </script>
+    <script>
+      (function () {
+        var h = document.querySelector(".site-header");
+        if (!h) return;
+        function f() { h.classList.toggle("scrolled", window.scrollY > window.innerHeight * 0.7); }
+        window.addEventListener("scroll", f, { passive: true });
+        f();
       })();
     </script>
   </body>
