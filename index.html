@@ -2460,180 +2460,88 @@
         margin-bottom: 1.2rem;
       }
       .big-title em { font-style: italic; color: var(--motif, var(--accent-ice)); }
-      .jstep-icon svg, .cc-ico svg { width: 100%; height: 100%; fill: #0a1422; }
-      .ic-cut { fill: var(--c); }
-      .ic-line { fill: none; stroke: var(--c); stroke-linejoin: round; }
 
-      /* ============================================================
-         The Orbit Journey (touchpoints timeline)
-         ============================================================ */
-      .journey { text-align: center; }
-      .journey .ch-kicker, .journey .big-title { text-align: center; }
-      .journey .big-title { max-width: none; }
-      .journey-steps {
+      /* The Orbit Journey - editorial timeline */
+      .journey .ch-inner { max-width: 78rem; }
+      .jline {
+        list-style: none;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        gap: 1.4rem;
+        gap: 1.75rem;
         margin-top: 3.5rem;
+        padding: 0;
         position: relative;
       }
-      .journey-steps::before {
+      .jline::before {
         content: "";
         position: absolute;
-        top: 2.35rem;
-        left: 8%; right: 8%;
+        top: 0.42rem; left: 2%; right: 2%;
         height: 1px;
-        background: linear-gradient(to right, transparent, var(--line-dark) 12%, var(--line-dark) 88%, transparent);
-        z-index: 0;
+        background: linear-gradient(to right, transparent, var(--motif), transparent);
+        opacity: 0.45;
       }
-      .jstep { position: relative; z-index: 1; text-align: center; }
-      .jstep-icon {
-        width: 4.7rem; height: 4.7rem;
+      .jnode { position: relative; padding-top: 1.9rem; }
+      .jnode::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 0.85rem; height: 0.85rem;
         border-radius: 50%;
-        background: var(--c);
-        display: flex; align-items: center; justify-content: center;
-        margin: 0 auto 1.2rem;
-        padding: 1.25rem;
-        box-shadow: 0 0 34px -8px var(--c);
+        border: 1.5px solid var(--motif);
+        background: var(--bg-deep);
+        box-shadow: 0 0 12px -1px var(--motif);
       }
-      .jstep-name {
-        font-family: var(--ff-display);
-        font-weight: 400;
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-        color: var(--text-primary);
-      }
-      .jstep-desc { font-size: 0.84rem; line-height: 1.45; color: var(--text-muted); }
+      .jn-num { font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.14em; color: var(--motif); }
+      .jn-name { font-family: var(--ff-display); font-weight: 400; font-size: 1.2rem; margin: 0.35rem 0 0.5rem; color: var(--text-primary); }
+      .jnode p { font-size: 0.84rem; line-height: 1.5; color: var(--text-muted); margin: 0; }
       @media (max-width: 860px) {
-        .journey-steps { grid-template-columns: repeat(3, 1fr); gap: 2rem 1.2rem; }
-        .journey-steps::before { display: none; }
+        .jline { grid-template-columns: 1fr; gap: 0; padding-left: 1.75rem; margin-top: 2.5rem; }
+        .jline::before { top: 0.6rem; bottom: 0.6rem; left: 0.4rem; right: auto; width: 1px; height: auto; background: linear-gradient(to bottom, transparent, var(--motif), transparent); }
+        .jnode { padding: 0 0 1.6rem 0; }
+        .jnode::before { top: 0.35rem; left: -1.75rem; }
       }
-      @media (max-width: 520px) { .journey-steps { grid-template-columns: 1fr 1fr; } }
 
-      /* ============================================================
-         How we match
-         ============================================================ */
+      /* How we match */
       .match-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; }
       @media (min-width: 900px) { .match-grid { grid-template-columns: 1.05fr 0.95fr; gap: 4rem; } }
-      .match-second-title {
-        font-family: var(--ff-display);
-        font-weight: 300;
-        font-size: clamp(1.5rem, 3vw, 2.2rem);
-        line-height: 1.1;
-        color: var(--text-primary);
-        margin-bottom: 1rem;
-      }
-      .goals-card {
-        background: rgba(10, 22, 40, 0.6);
-        border: 1px solid var(--line-dark);
-        border-radius: 0.9rem;
-        padding: 1.6rem;
-        box-shadow: 0 30px 60px rgba(1, 3, 10, 0.5);
-      }
-      .gc-label { font-family: var(--ff-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute-light); margin-bottom: 1.1rem; }
-      .gc-q { font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-ice); margin-bottom: 0.7rem; }
+      .match-second-title { font-family: var(--ff-display); font-weight: 300; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.1; color: var(--text-primary); margin-bottom: 1rem; }
+      .goals-card { position: relative; overflow: hidden; background: rgba(10, 22, 40, 0.55); border: 1px solid var(--line-dark); border-radius: 0.9rem; padding: 1.6rem; box-shadow: 0 30px 60px rgba(1, 3, 10, 0.5); }
+      .goals-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--motif); }
+      .gc-label { font-family: var(--ff-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--motif); margin-bottom: 1.1rem; }
+      .gc-q { font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-ice); margin-bottom: 0.7rem; }
       .gc-q .gc-hint { color: var(--mute-light); }
       .gc-cat { font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute-light); margin: 1.1rem 0 0.55rem; }
       .gc-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-      .chip {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.85rem;
-        border-radius: 999px;
-        border: 1px solid var(--line-dark);
-        background: rgba(255, 255, 255, 0.03);
-        color: var(--accent-ice);
-      }
-      .chip.on { background: var(--accent-stardust); color: #1a1405; border-color: var(--accent-stardust); font-weight: 500; }
-      .gc-btn {
-        width: 100%;
-        margin-top: 1.4rem;
-        background: var(--accent-stardust);
-        color: #1a1405;
-        border: none;
-        border-radius: 0.5rem;
-        padding: 0.85rem;
-        font-family: var(--ff-mono);
-        font-size: 0.78rem;
-        letter-spacing: 0.06em;
-        font-weight: 600;
-        cursor: pointer;
-      }
-      .match-result {
-        margin-top: 1.25rem;
-        background: rgba(10, 22, 40, 0.6);
-        border: 1px solid var(--line-dark);
-        border-radius: 0.9rem;
-        padding: 1.3rem 1.6rem;
-      }
+      .chip { font-size: 0.8rem; padding: 0.4rem 0.85rem; border-radius: 999px; border: 1px solid var(--line-dark); background: rgba(255, 255, 255, 0.03); color: var(--accent-ice); }
+      .chip.on { background: var(--motif); color: #0a1422; border-color: var(--motif); font-weight: 500; }
+      .gc-btn { width: 100%; margin-top: 1.4rem; background: var(--motif); color: #0a1422; border: none; border-radius: 0.5rem; padding: 0.85rem; font-family: var(--ff-mono); font-size: 0.78rem; letter-spacing: 0.06em; font-weight: 600; cursor: pointer; }
+      .match-result { margin-top: 1.25rem; background: rgba(10, 22, 40, 0.55); border: 1px solid var(--line-dark); border-radius: 0.9rem; padding: 1.3rem 1.6rem; }
       .match-result p { font-size: 0.9rem; color: var(--accent-ice); margin-bottom: 1rem; }
-      .mr-hl { color: var(--accent-stardust); }
+      .mr-hl { color: var(--motif); }
       .mr-meta { color: var(--mute-light); }
       .mr-graph { width: 100%; max-width: 22rem; height: auto; }
 
-      /* ============================================================
-         Commercial model
-         ============================================================ */
+      /* Commercial model */
       .commercial { text-align: center; }
       .commercial .ch-kicker, .commercial .big-title { text-align: center; }
-      .comm-cards {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-        margin-top: 3rem;
-        text-align: left;
-      }
+      .comm-cards { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; text-align: left; }
       @media (min-width: 820px) { .comm-cards { grid-template-columns: repeat(3, 1fr); } }
-      .comm-card {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid var(--line-dark);
-        border-radius: 0.9rem;
-        padding: 1.6rem;
-        background: rgba(6, 12, 24, 0.6);
-        transition: transform 0.3s ease, border-color 0.3s ease;
-      }
-      .comm-card:hover { transform: translateY(-4px); border-color: var(--c); }
-      .cc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2.5rem; }
-      .cc-tag {
-        font-family: var(--ff-mono);
-        font-size: 0.68rem;
-        letter-spacing: 0.08em;
-        padding: 0.35rem 0.9rem;
-        border-radius: 999px;
-        border: 1px solid var(--c);
-        color: var(--c);
-      }
-      .cc-ico { width: 3rem; height: 3rem; border-radius: 50%; background: var(--c); display: flex; align-items: center; justify-content: center; padding: 0.8rem; }
-      .cc-num {
-        position: absolute;
-        right: 1.2rem; bottom: 0.4rem;
-        font-family: var(--ff-display);
-        font-size: 7rem;
-        line-height: 1;
-        color: rgba(255, 255, 255, 0.05);
-        pointer-events: none;
-      }
+      .comm-card { position: relative; overflow: hidden; border: 1px solid var(--line-dark); border-radius: 0.9rem; padding: 1.75rem; background: rgba(10, 22, 40, 0.4); transition: transform 0.3s ease, border-color 0.3s ease; }
+      .comm-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--motif); }
+      .comm-card:hover { transform: translateY(-4px); border-color: var(--motif); }
+      .cc-num { font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--motif); }
+      .cc-tag { display: inline-block; font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute-light); margin: 0.35rem 0 1.2rem; }
       .cc-title { font-family: var(--ff-display); font-weight: 400; font-size: 1.5rem; color: var(--text-primary); }
-      .cc-subtitle { color: var(--c); font-weight: 500; font-size: 0.95rem; margin: 0.25rem 0 1rem; }
+      .cc-subtitle { color: var(--accent-ice); font-size: 0.95rem; margin: 0.3rem 0 1rem; }
       .cc-desc { font-size: 0.92rem; line-height: 1.5; color: var(--text-muted); margin-bottom: 1.4rem; min-height: 2.8rem; }
-      .cc-fee { font-family: var(--ff-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-ice); }
-      .comm-addon {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        margin-top: 1.25rem;
-        padding: 1.5rem 1.75rem;
-        border: 1px solid var(--line-dark);
-        border-radius: 0.9rem;
-        background: rgba(232, 131, 74, 0.06);
-        text-align: left;
-      }
-      .comm-addon .cc-ico { flex: none; --c: #e8834a; }
+      .cc-fee { font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--motif); }
+      .comm-addon { display: flex; align-items: flex-start; gap: 1.25rem; margin-top: 1.25rem; padding: 1.6rem 1.75rem; border: 1px solid var(--line-dark); border-left: 3px solid var(--motif); border-radius: 0.6rem; background: rgba(10, 22, 40, 0.4); text-align: left; }
+      .addon-plus { font-family: var(--ff-display); font-weight: 300; font-size: 2.4rem; line-height: 1; color: var(--motif); flex: none; }
       .addon-body h3 { font-family: var(--ff-display); font-weight: 400; font-size: 1.35rem; color: var(--text-primary); }
-      .addon-body .cc-subtitle { color: #e8834a; }
+      .addon-body .cc-subtitle { margin: 0.2rem 0 0.6rem; }
       .addon-body p { font-size: 0.92rem; line-height: 1.5; color: var(--text-muted); }
-      .addon-body .cc-fee { color: #f0a06e; margin-top: 0.5rem; display: inline-block; }
-      @media (max-width: 620px) { .comm-addon { flex-direction: column; align-items: flex-start; } }
+      .addon-body .cc-fee { margin-top: 0.6rem; display: inline-block; }
+      @media (max-width: 620px) { .comm-addon { flex-direction: column; } }
 
       /* ============================================================
          reduced motion
@@ -2829,39 +2737,18 @@
          THE ORBIT JOURNEY
          ======================================================== -->
     <section class="section journey" id="journey" style="--motif: #e8c26a">
-      <p class="ch-kicker r" style="color: #e8c26a">The Orbit journey</p>
-      <h2 class="big-title r">Every <em>touchpoint.</em></h2>
-      <div class="journey-steps">
-        <div class="jstep r" style="--c:#4f79e8; --d:0.04s">
-          <div class="jstep-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><rect class="ic-cut" x="8" y="8" width="8" height="1.6" rx=".8"/><rect class="ic-cut" x="8" y="11.6" width="8" height="1.6" rx=".8"/><rect class="ic-cut" x="8" y="15.2" width="5" height="1.6" rx=".8"/></svg></div>
-          <h3 class="jstep-name">Register</h3>
-          <p class="jstep-desc">Orbit fields are added to ticket registration, so attendees tell us their networking intent before they arrive.</p>
-        </div>
-        <div class="jstep r" style="--c:#2fb39a; --d:0.10s">
-          <div class="jstep-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path class="ic-cut" d="M4.2 7.2h15.6L12 13z"/></svg></div>
-          <h3 class="jstep-name">Pre-event</h3>
-          <p class="jstep-desc">A short email series primes them to get value from the moment they walk in.</p>
-        </div>
-        <div class="jstep r" style="--c:#e8c04a; --d:0.16s">
-          <div class="jstep-icon"><svg viewBox="0 0 24 24"><rect x="5.5" y="4" width="13" height="17" rx="2.5"/><rect class="ic-cut" x="9.5" y="2.6" width="5" height="2.4" rx="1.2"/><circle class="ic-cut" cx="12" cy="10" r="2.5"/><rect class="ic-cut" x="8" y="14.5" width="8" height="1.7" rx=".85"/></svg></div>
-          <h3 class="jstep-name">Arrive</h3>
-          <p class="jstep-desc">Badge, lanyard and Orbit in hand. A branded host intro connects them to every guest.</p>
-        </div>
-        <div class="jstep r" style="--c:#e8834a; --d:0.22s">
-          <div class="jstep-icon"><svg viewBox="0 0 24 24"><path d="M6.5 12l11-5M6.5 12l11 5" stroke="#0a1422" stroke-width="1.6" fill="none"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6.5" r="2.5"/><circle cx="18" cy="17.5" r="2.5"/></svg></div>
-          <h3 class="jstep-name">Connect</h3>
-          <p class="jstep-desc">Meet, scan and take notes. Orbit becomes a natural networking assistant that steers you to the people you need.</p>
-        </div>
-        <div class="jstep r" style="--c:#e8574f; --d:0.28s">
-          <div class="jstep-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle class="ic-cut" cx="12" cy="12" r="5.4"/><circle cx="12" cy="12" r="2.6"/></svg></div>
-          <h3 class="jstep-name">Experience</h3>
-          <p class="jstep-desc">The networking becomes a beautiful, interactive experience, and a marketing moment for your guests.</p>
-        </div>
-        <div class="jstep r" style="--c:#46b579; --d:0.34s">
-          <div class="jstep-icon"><svg viewBox="0 0 24 24"><circle cx="10" cy="8.5" r="3.4"/><path d="M3.8 20c0-3.5 2.8-6.3 6.2-6.3s6.2 2.8 6.2 6.3z"/><rect x="17.6" y="5" width="1.8" height="6" rx=".9"/><rect x="15.5" y="7.1" width="6" height="1.8" rx=".9"/></svg></div>
-          <h3 class="jstep-name">After</h3>
-          <p class="jstep-desc">Personal, shareable reports for every stakeholder: who they met, who they missed, and a story they share.</p>
-        </div>
+      <div class="ch-inner">
+        <p class="ch-kicker r">The Orbit journey</p>
+        <h2 class="big-title r">Every <em>touchpoint,</em> designed.</h2>
+        <p class="ch-sub r">Six moments, from the ticket to the follow-up. Orbit shapes each one.</p>
+        <ol class="jline">
+        <li class="jnode r" style="--d:0.05s"><span class="jn-num">01</span><h3 class="jn-name">Register</h3><p>Orbit fields on the ticket, so attendees tell us their networking intent before they arrive.</p></li>
+        <li class="jnode r" style="--d:0.11s"><span class="jn-num">02</span><h3 class="jn-name">Pre-event</h3><p>A short email series primes them to get value from the moment they walk in.</p></li>
+        <li class="jnode r" style="--d:0.17s"><span class="jn-num">03</span><h3 class="jn-name">Arrive</h3><p>Badge, lanyard and Orbit in hand. A branded host intro connects them to every guest.</p></li>
+        <li class="jnode r" style="--d:0.23s"><span class="jn-num">04</span><h3 class="jn-name">Connect</h3><p>Meet, scan and take notes. Orbit becomes a natural assistant that steers you to the people you need.</p></li>
+        <li class="jnode r" style="--d:0.29s"><span class="jn-num">05</span><h3 class="jn-name">Experience</h3><p>The networking becomes a beautiful, interactive experience, and a marketing moment for your guests.</p></li>
+        <li class="jnode r" style="--d:0.35s"><span class="jn-num">06</span><h3 class="jn-name">After</h3><p>Personal, shareable reports for everyone: who they met, who they missed, and a story they share.</p></li>
+        </ol>
       </div>
     </section>
 
@@ -3137,10 +3024,10 @@
     <!-- ========================================================
          HOW WE MATCH
          ======================================================== -->
-    <section class="section match" id="match" style="--motif: #e8c26a">
+    <section class="section match" id="match" style="--motif: #e85a50">
       <div class="match-grid">
         <div>
-          <p class="ch-kicker r" style="color: #e8c26a">How we match</p>
+          <p class="ch-kicker r">How we match</p>
           <h2 class="big-title r">A success is who you leave having <em>met.</em></h2>
           <p class="ch-sub r">
             It's more about intent than job role or sector. A great introduction
@@ -3148,7 +3035,7 @@
             that overlap, using the strongest warm introduction there is: a
             person you both trust.
           </p>
-          <p class="ch-kicker r" style="color: #e8c26a; margin-top: 2.5rem">Who you missed</p>
+          <p class="ch-kicker r" style="margin-top: 2.5rem">Who you missed</p>
           <h3 class="match-second-title r">It continues long after you leave.</h3>
           <p class="ch-sub r">
             Orbit feeds you the people you missed and should have met, in an
@@ -3176,16 +3063,16 @@
             <svg class="mr-graph" viewBox="0 0 300 120" aria-hidden="true">
               <line x1="52" y1="55" x2="152" y2="34" stroke="#24395e" />
               <line x1="52" y1="66" x2="152" y2="92" stroke="#24395e" />
-              <line x1="52" y1="60" x2="150" y2="60" stroke="#e8c26a" stroke-dasharray="3 3" />
-              <line x1="172" y1="60" x2="236" y2="60" stroke="#e8c26a" stroke-dasharray="4 4" />
+              <line x1="52" y1="60" x2="150" y2="60" stroke="#e85a50" stroke-dasharray="3 3" />
+              <line x1="172" y1="60" x2="236" y2="60" stroke="#e85a50" stroke-dasharray="4 4" />
               <circle cx="40" cy="60" r="10" fill="#ffffff" />
-              <circle cx="160" cy="32" r="6" fill="#4f79e8" />
-              <circle cx="160" cy="92" r="6" fill="#4f79e8" />
-              <circle cx="250" cy="60" r="9" fill="none" stroke="#e8c26a" stroke-width="2" />
-              <circle cx="250" cy="60" r="4" fill="#e8c26a" />
+              <circle cx="160" cy="32" r="6" fill="#9fb2cf" />
+              <circle cx="160" cy="92" r="6" fill="#9fb2cf" />
+              <circle cx="250" cy="60" r="9" fill="none" stroke="#e85a50" stroke-width="2" />
+              <circle cx="250" cy="60" r="4" fill="#e85a50" />
               <text x="40" y="86" fill="#8598b4" font-size="9" text-anchor="middle" font-family="monospace">YOU</text>
               <text x="101" y="53" fill="#8598b4" font-size="8" text-anchor="middle" font-family="monospace">MET 25 MINS</text>
-              <text x="250" y="86" fill="#e8c26a" font-size="8" text-anchor="middle" font-family="monospace">WANTED TO MEET</text>
+              <text x="250" y="86" fill="#e85a50" font-size="8" text-anchor="middle" font-family="monospace">WANTED TO MEET</text>
             </svg>
           </div>
         </div>
@@ -3195,37 +3082,37 @@
     <!-- ========================================================
          COMMERCIAL MODEL
          ======================================================== -->
-    <section class="section commercial" id="commercial">
-      <p class="ch-kicker r" style="color: #e8c26a">Commercial model</p>
-      <h2 class="big-title r" style="--motif: #e8c26a">Three ways to <em>run Orbit.</em></h2>
+    <section class="section commercial" id="commercial" style="--motif: #5fb8d0">
+      <p class="ch-kicker r">Commercial model</p>
+      <h2 class="big-title r">Three ways to <em>run Orbit.</em></h2>
       <div class="comm-cards">
-        <div class="comm-card r" style="--c:#1d9e75; --d:0.06s">
-          <div class="cc-top"><span class="cc-tag">Integrate</span><span class="cc-ico"><svg viewBox="0 0 24 24"><rect x="7.5" y="3.5" width="9" height="9.5" rx="3"/><path d="M10.5 3.5V1.5M13.5 3.5V1.5" stroke="#0a1422" stroke-width="1.8" stroke-linecap="round"/><path d="M12 13v3.3a3.8 3.8 0 0 1-3.8 3.8H6.7" fill="none" stroke="#0a1422" stroke-width="1.8" stroke-linecap="round"/></svg></span></div>
+        <div class="comm-card r" style="--d:0.06s">
+          <span class="cc-num">01</span>
+          <span class="cc-tag">Integrate</span>
           <h3 class="cc-title">Platform Integration</h3>
           <p class="cc-subtitle">Events with an app already.</p>
           <p class="cc-desc">Orbit plugs in as the networking and data layer.</p>
           <p class="cc-fee">Per event fee</p>
-          <span class="cc-num">1</span>
         </div>
-        <div class="comm-card r" style="--c:#4f79e8; --d:0.14s">
-          <div class="cc-top"><span class="cc-tag">Infrastructure</span><span class="cc-ico"><svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><circle class="ic-cut" cx="8.5" cy="12" r="2.6"/><rect class="ic-cut" x="13" y="9.6" width="5.5" height="1.7" rx=".85"/><rect class="ic-cut" x="13" y="13" width="4" height="1.7" rx=".85"/></svg></span></div>
+        <div class="comm-card r" style="--d:0.14s">
+          <span class="cc-num">02</span>
+          <span class="cc-tag">Infrastructure</span>
           <h3 class="cc-title">Full Infrastructure</h3>
           <p class="cc-subtitle">Events with no networking tech.</p>
           <p class="cc-desc">We supply branded Orbit cards and run the whole experience.</p>
           <p class="cc-fee">Integration + licence fee</p>
-          <span class="cc-num">2</span>
         </div>
-        <div class="comm-card r" style="--c:#e8c26a; --d:0.22s">
-          <div class="cc-top"><span class="cc-tag">Scale</span><span class="cc-ico"><svg viewBox="0 0 24 24"><path d="M12 3l9.2 4.9L12 12.8 2.8 7.9z"/><path class="ic-line" d="M3.1 12.3L12 17l8.9-4.7" stroke-width="1.8"/></svg></span></div>
+        <div class="comm-card r" style="--d:0.22s">
+          <span class="cc-num">03</span>
+          <span class="cc-tag">Scale</span>
           <h3 class="cc-title">Annual Subscription</h3>
           <p class="cc-subtitle">Organisations, agencies and venues.</p>
           <p class="cc-desc">License Orbit across a whole portfolio of events.</p>
           <p class="cc-fee">Multiple events per year</p>
-          <span class="cc-num">3</span>
         </div>
       </div>
       <div class="comm-addon r" style="--d: 0.3s">
-        <span class="cc-ico"><svg viewBox="0 0 24 24"><path d="M6.5 12l11-5M6.5 12l11 5" stroke="#0a1422" stroke-width="1.6" fill="none"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6.5" r="2.5"/><circle cx="18" cy="17.5" r="2.5"/></svg></span>
+        <span class="addon-plus">+</span>
         <div class="addon-body">
           <h3>Interactive Visualisation Experience</h3>
           <p class="cc-subtitle">Flagship branded moment.</p>
